@@ -1,0 +1,5 @@
+export const CITIES   = 'cities'
+export const ATTRACTIONS = 'attractions'
+export const TRANSPORTATION = 'transportation'
+export const ACCOMMODATION = 'accommodation'
+export const SEARCH_LIST = 'SearchList'
