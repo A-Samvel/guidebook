@@ -121,7 +121,7 @@ export default function Navigation() {
             onClick={toggleTheme}
             sx={{ color: color2 }}
           >
-            {!darkMode ? <DarkModeIcon /> : <LightModeIcon />}
+            {darkMode ? <DarkModeIcon /> : <LightModeIcon /> }
           </IconButton>
         </Box> 
       </Box>

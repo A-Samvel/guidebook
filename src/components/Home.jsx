@@ -9,9 +9,19 @@ import {
 } from "../javascriptDocs/const";
 import { useContext } from "react";
 import { DarkModeContext } from "../javascriptDocs/context";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const { color1, color2, border } = useContext(DarkModeContext);
+
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (delay) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, delay },
+    }),
+  };
 
   return (
     <Grid container spacing={2}>
@@ -44,95 +54,111 @@ export default function Home() {
           alignItems: "center",
         }}
       >
-        <Box
-          sx={{
-            padding: 3,
-            maxWidth: 500,
-            color: color2,
-            backgroundColor: color1,
-            boxShadow:
-              "0px 4px 8px rgba(0, 0, 0, 0.3), 0px 2px 5px rgba(0, 0, 0, 0.2)",
-            borderRadius: 5,
-            fontSize: 15,
-            border: border,
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0, scale: 0.9 },
+            visible: { opacity: 1, scale: 1, transition: { duration: 1 } },
           }}
         >
-          <Typography
-            variant="h4"
-            gutterBottom
-            sx={{ textAlign: "center", fontFamily: "Roboto Mono" }}
+          <Box
+            sx={{
+              padding: 3,
+              maxWidth: 500,
+              color: color2,
+              backgroundColor: color1,
+              boxShadow:
+                "0px 4px 8px rgba(0, 0, 0, 0.3), 0px 2px 5px rgba(0, 0, 0, 0.2)",
+              borderRadius: 5,
+              fontSize: 15,
+              border: border,
+              textAlign: "center",
+            }}
           >
-            Welcome to Japan Guidebook!
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{ mt: 2, textAlign: "center", fontFamily: "Roboto Mono" }}
-          >
-            Discover the best of Japan with our comprehensive travel guide.
-            Whether you're planning your first trip or are a seasoned traveler,
-            our site provides valuable recommendations on:
-          </Typography>
-
-          {[
-            {
-              path: `/${CITIES}`,
-              emoji: "🌆",
-              label: "CITIES",
-              description:
-                "Explore Japan’s vibrant metropolises and charming towns",
-            },
-            {
-              path: `/${ATTRACTIONS}`,
-              emoji: "🏯",
-              label: "ATTRACTIONS",
-              description:
-                "Discover iconic temples, historical sites, and hidden gems.",
-            },
-            {
-              path: `/${ACCOMMODATION}`,
-              emoji: "🏨",
-              label: "ACCOMMODATION",
-              description:
-                "Find the best accommodations to suit your budget and style.",
-            },
-            {
-              path: `/${TRANSPORTATION}`,
-              emoji: "🚆",
-              label: "TRANSPORTATION",
-              description: "Navigate Japan with ease using our transport tips.",
-            },
-          ].map(({ path, emoji, label, description }) => (
-            <Typography
-              key={label}
-              variant="body1"
-              sx={{
-                mt: 2,
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-                justifyContent: "center",
-                fontFamily: "Roboto Mono",
-              }}
-            >
-              <DoneOutlineIcon />
-              {emoji}
-              <Link
-                to={path}
-                style={{ textDecoration: "underline", color: "inherit" }}
+            <motion.div variants={fadeIn} custom={0}>
+              <Typography
+                variant="h4"
+                gutterBottom
+                sx={{ fontFamily: "Roboto Mono" }}
               >
-                {label}
-              </Link>
-              {description}
-            </Typography>
-          ))}
-          <Typography
-            variant="body1"
-            sx={{ mt: 2, textAlign: "center", fontFamily: "Roboto Mono" }}
-          >
-            Plan your perfect journey with us and experience the beauty of Japan
-            like never before! ✨
-          </Typography>
-        </Box>
+                Welcome to Japan Guidebook!
+              </Typography>
+            </motion.div>
+
+            <motion.div variants={fadeIn} custom={0.2}>
+              <Typography variant="body1" sx={{ fontFamily: "Roboto Mono" }}>
+                Discover the best of Japan with our comprehensive travel guide.
+              </Typography>
+            </motion.div>
+
+            {[
+              {
+                path: `/${CITIES}`,
+                emoji: "🌆",
+                label: "CITIES",
+                description:
+                  "Explore Japan’s vibrant metropolises and charming towns",
+              },
+              {
+                path: `/${ATTRACTIONS}`,
+                emoji: "🏯",
+                label: "ATTRACTIONS",
+                description:
+                  "Discover iconic temples, historical sites, and hidden gems.",
+              },
+              {
+                path: `/${ACCOMMODATION}`,
+                emoji: "🏨",
+                label: "ACCOMMODATION",
+                description:
+                  "Find the best accommodations to suit your budget and style.",
+              },
+              {
+                path: `/${TRANSPORTATION}`,
+                emoji: "🚆",
+                label: "TRANSPORTATION",
+                description:
+                  "Navigate Japan with ease using our transport tips.",
+              },
+            ].map(({ path, emoji, label, description }, index) => (
+              <motion.div
+                key={label}
+                variants={fadeIn}
+                custom={index * 0.2 + 0.4}
+              >
+                <Typography
+                  variant="body1"
+                  sx={{
+                    mt: 2,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 1,
+                    justifyContent: "center",
+                    fontFamily: "Roboto Mono",
+                  }}
+                >
+                  <DoneOutlineIcon />
+                  {emoji}
+                  <Link
+                    to={path}
+                    style={{ textDecoration: "underline", color: "inherit" }}
+                  >
+                    {label}
+                  </Link>
+                  {description}
+                </Typography>
+              </motion.div>
+            ))}
+
+            <motion.div variants={fadeIn} custom={1}>
+              <Typography variant="body1" sx={{ fontFamily: "Roboto Mono" , mt: 2}}>
+                Plan your perfect journey with us and experience the beauty of
+                Japan like never before! ✨
+              </Typography>
+            </motion.div>
+          </Box>
+        </motion.div>
       </Grid>
     </Grid>
   );

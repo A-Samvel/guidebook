@@ -18,11 +18,11 @@ import Cities from "./components/Cities";
 import { DarkModeContext } from "./javascriptDocs/context";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
-  const color1 = darkMode ? "#FFB7C5" : "#0D47A1";
-  const color2 = darkMode ? "#F4F4F4" : "#5998b7";
-  const border = darkMode ? '2px #e594c5 solid' :'2px #72a0e5solid '
+  const color1 = darkMode ? "#0D47A1" : "#FFB7C5";
+  const color2 = darkMode ? "#5998b7" : "#F4F4F4";
+  const border = darkMode ? "2px #72a0e5solid " : "2px #e594c5 solid";
 
   useEffect(() => {
     document.documentElement.style.setProperty("--color1", color1);
@@ -30,7 +30,9 @@ function App() {
   }, [darkMode, color1, color2]);
   return (
     <BrowserRouter>
-      <DarkModeContext.Provider value={{ setDarkMode, darkMode, color1, color2,border }}>
+      <DarkModeContext.Provider
+        value={{ setDarkMode, darkMode, color1, color2, border }}
+      >
         <Navigation />
 
         <Routes>
