@@ -38,7 +38,7 @@ export default function Navigation() {
         <Link to="/" style={{ textDecoration: "none" }}>
           <Typography
             variant="h5"
-            sx={{ color : color2 }}
+            sx={{ color : color2, fontFamily: "Roboto Mono", }}
           >
             Japan Travel Guide
           </Typography>
@@ -77,7 +77,7 @@ export default function Navigation() {
               opacity: isActive ? "0.5" : "1",
             })}
           >
-            <Button color="inherit" children="ATTRACTIONS" />
+            <Button color="inherit" children="TRANSPORTATION" />
           </NavLink>
 
           <NavLink
