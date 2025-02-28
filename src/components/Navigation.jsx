@@ -2,24 +2,27 @@ import { AppBar, Box, Typography, IconButton, Button } from "@mui/material";
 import { NavLink, Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import { ACCOMMODATION, ATTRACTIONS, CITIES, TRANSPORTATION } from "../javascriptDocs/const";
-// import LightModeIcon from "@mui/icons-material/LightMode";
-// import DarkModeIcon from "@mui/icons-material/DarkMode";
-// import { useContext } from "react";
-// import { DarkModeContext } from "./javascriptDocs/context";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import { useContext } from "react";
+import { DarkModeContext } from "../javascriptDocs/context"; 
 
 export default function Navigation() {
-  
+  const {setDarkMode, darkMode, color1, color2} = useContext(DarkModeContext)
+
+  const toggleTheme = () => {
+    setDarkMode(!darkMode);
+  };
 
   return (
     <AppBar
       position="static"
       sx={{
-        backgroundColor: 'pink',
+        backgroundColor: color1,
         boxShadow:
           "0px 4px 8px rgba(0, 0, 0, 0.3), 0px 2px 5px rgba(0, 0, 0, 0.2)",
         margin: 0,
         padding: 0,
-        // border: border,
         borderTop: "none",
       }}
     >
@@ -34,8 +37,8 @@ export default function Navigation() {
       >
         <Link to="/" style={{ textDecoration: "none" }}>
           <Typography
-            variant="h6"
-            sx={{ color : "black" }}
+            variant="h5"
+            sx={{ color : color2 }}
           >
             Japan Travel Guide
           </Typography>
@@ -48,7 +51,7 @@ export default function Navigation() {
             to={`/${CITIES}`}
             style={({ isActive }) => ({
               textDecoration: "none",
-              color: "black",
+              color: color2,
               opacity: isActive ? "0.5" : "1",
             })}
           >
@@ -59,7 +62,7 @@ export default function Navigation() {
             to={`/${ATTRACTIONS}`}
             style={({ isActive }) => ({
               textDecoration: "none",
-              color: "black",
+              color: color2,
               opacity: isActive ? "0.5" : "1",
             })}
           >
@@ -70,7 +73,7 @@ export default function Navigation() {
             to={`/${TRANSPORTATION}`}
             style={({ isActive }) => ({
               textDecoration: "none",
-              color: "black",
+              color: color2,
               opacity: isActive ? "0.5" : "1",
             })}
           >
@@ -81,14 +84,15 @@ export default function Navigation() {
             to={`/${ACCOMMODATION}`}
             style={({ isActive }) => ({
               textDecoration: "none",
-              color: "black",
+              color: color2,
               opacity: isActive ? "0.5" : "1",
             })}
           >
             <Button color="inherit" children="ACCOMMODATION" />
           </NavLink>
         </Box>
-        {/* {isLoginedUser ? (
+
+        {/*  {isLoginedUser ? (
           <NavLink
             to={`/${PROFILE}`}
             style={({ isActive }) => ({
@@ -110,16 +114,16 @@ export default function Navigation() {
           >
             <Button color="inherit" children="Sign In" />
           </NavLink>
-        )}
+        )} */}
         <Box>
           <IconButton
             color="inherit"
             onClick={toggleTheme}
             sx={{ color: color2 }}
           >
-            {darkMode ? <DarkModeIcon /> : <LightModeIcon />}
+            {!darkMode ? <DarkModeIcon /> : <LightModeIcon />}
           </IconButton>
-        </Box> */}
+        </Box> 
       </Box>
     </AppBar>
   );
