@@ -8,7 +8,7 @@ import { useContext } from "react";
 import { DarkModeContext } from "../javascriptDocs/context"; 
 
 export default function Navigation() {
-  const {setDarkMode, darkMode, color1, color2} = useContext(DarkModeContext)
+  const {setDarkMode, darkMode, color1, color2,textColor} = useContext(DarkModeContext)
 
   const toggleTheme = () => {
     setDarkMode(!darkMode);
@@ -38,9 +38,9 @@ export default function Navigation() {
         <Link to="/" style={{ textDecoration: "none" }}>
           <Typography
             variant="h5"
-            sx={{ color : color2, fontFamily: "Roboto Mono", }}
+            sx={{ color : textColor, fontFamily: "Roboto Mono", }}
           >
-            Japan Travel Guide
+            Japan   Travel   Guide   
           </Typography>
         </Link>
 
@@ -51,7 +51,7 @@ export default function Navigation() {
             to={`/${CITIES}`}
             style={({ isActive }) => ({
               textDecoration: "none",
-              color: color2,
+              color: textColor,
               opacity: isActive ? "0.5" : "1",
             })}
           >
@@ -62,7 +62,7 @@ export default function Navigation() {
             to={`/${ATTRACTIONS}`}
             style={({ isActive }) => ({
               textDecoration: "none",
-              color: color2,
+              color: textColor,
               opacity: isActive ? "0.5" : "1",
             })}
           >
@@ -73,7 +73,7 @@ export default function Navigation() {
             to={`/${TRANSPORTATION}`}
             style={({ isActive }) => ({
               textDecoration: "none",
-              color: color2,
+              color: textColor,
               opacity: isActive ? "0.5" : "1",
             })}
           >
@@ -84,7 +84,7 @@ export default function Navigation() {
             to={`/${ACCOMMODATION}`}
             style={({ isActive }) => ({
               textDecoration: "none",
-              color: color2,
+              color: textColor,
               opacity: isActive ? "0.5" : "1",
             })}
           >
@@ -115,11 +115,12 @@ export default function Navigation() {
             <Button color="inherit" children="Sign In" />
           </NavLink>
         )} */}
+
         <Box>
           <IconButton
             color="inherit"
             onClick={toggleTheme}
-            sx={{ color: color2 }}
+            sx={{ color: textColor }}
           >
             {darkMode ? <DarkModeIcon /> : <LightModeIcon /> }
           </IconButton>

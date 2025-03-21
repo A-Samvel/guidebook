@@ -22,7 +22,8 @@ function App() {
 
   const color1 = darkMode ? "#0D47A1" : "#FFB7C5";
   const color2 = darkMode ? "#5998b7" : "#F4F4F4";
-  const border = darkMode ? "2px #72a0e5solid " : "2px #e594c5 solid";
+  const border = darkMode ? "2px #72a0e5 solid " : "2px #e594c5 solid";
+  const textColor = darkMode ? "white" : "black";
 
   useEffect(() => {
     document.documentElement.style.setProperty("--color1", color1);
@@ -31,7 +32,7 @@ function App() {
   return (
     <BrowserRouter>
       <DarkModeContext.Provider
-        value={{ setDarkMode, darkMode, color1, color2, border }}
+        value={{ setDarkMode, darkMode, color1, color2, border,textColor }}
       >
         <Navigation />
 

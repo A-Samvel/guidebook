@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, Button } from "@mui/material";
 import DoneOutlineIcon from "@mui/icons-material/DoneOutline";
 import { Link } from "react-router-dom";
 import {
@@ -12,7 +12,7 @@ import { DarkModeContext } from "../javascriptDocs/context";
 import { motion } from "framer-motion";
 
 export default function Home() {
-  const { color1, color2, border } = useContext(DarkModeContext);
+  const { color1, color2, border, textColor } = useContext(DarkModeContext);
 
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -28,7 +28,7 @@ export default function Home() {
       <Grid item xs={12} md={6}>
         <Box
           sx={{
-            width: "100%",
+            width: "110%",
             height: "80vh",
             mt: 3,
             ml: 0,
@@ -66,7 +66,7 @@ export default function Home() {
             sx={{
               padding: 3,
               maxWidth: 500,
-              color: color2,
+              color: textColor,
               backgroundColor: color1,
               boxShadow:
                 "0px 4px 8px rgba(0, 0, 0, 0.3), 0px 2px 5px rgba(0, 0, 0, 0.2)",
@@ -82,7 +82,7 @@ export default function Home() {
                 gutterBottom
                 sx={{ fontFamily: "Roboto Mono" }}
               >
-                Welcome to Japan Guidebook!
+                WELCOME TO JAPAN GUIDEBOOK!
               </Typography>
             </motion.div>
 
@@ -127,7 +127,23 @@ export default function Home() {
                 variants={fadeIn}
                 custom={index * 0.2 + 0.4}
               >
-                <Typography
+                <Link to={path}>
+                  <Button
+                    variant="outlined"
+                    sx={{
+                      color: textColor,
+                      mt: 2,
+                      boxShadow:
+                        "0px 4px 8px rgba(0, 0, 0, 0.3), 0px 2px 5px rgba(0, 0, 0, 0.2)",
+                        border:border,
+                        fontFamily: "Roboto Mono"
+                    }}
+                  >
+                    <DoneOutlineIcon />
+                    {emoji} {label} - {description}
+                  </Button>
+                </Link>
+                {/* <Typography
                   variant="body1"
                   sx={{
                     mt: 2,
@@ -147,12 +163,15 @@ export default function Home() {
                     {label}
                   </Link>
                   {description}
-                </Typography>
+                </Typography> */}
               </motion.div>
             ))}
 
             <motion.div variants={fadeIn} custom={1}>
-              <Typography variant="body1" sx={{ fontFamily: "Roboto Mono" , mt: 2}}>
+              <Typography
+                variant="body1"
+                sx={{ fontFamily: "Roboto Mono", mt: 2 }}
+              >
                 Plan your perfect journey with us and experience the beauty of
                 Japan like never before! ✨
               </Typography>

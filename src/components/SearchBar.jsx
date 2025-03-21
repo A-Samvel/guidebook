@@ -8,7 +8,7 @@ import { DarkModeContext } from "../javascriptDocs/context";
 
 export default function SearchBar() {
   const [searchValue, setSearchValue] = useState("");
-    const { color1, color2 } = useContext(DarkModeContext);
+    const { color1, color2,textColor } = useContext(DarkModeContext);
   const navigate = useNavigate();
 
   const handleSearchClick = () => {
@@ -54,14 +54,14 @@ export default function SearchBar() {
             borderColor: color1,
           },
           "&.Mui-focused fieldset": {
-            borderColor: color1,
+            borderColor: textColor,
           },
         },
         "& .MuiInputLabel-root": {
-          color: color1,
+          color: textColor,
         },
         "& .MuiInputBase-input": {
-          color: color1,
+          color: textColor,
         },
         "& .MuiInputBase-input::placeholder": {
           color: color1,
@@ -70,7 +70,7 @@ export default function SearchBar() {
           color: color1,
         },
         "& .MuiInputLabel-root.Mui-focused": {
-          color: color1,
+          color: textColor,
         },
       }}
     />
