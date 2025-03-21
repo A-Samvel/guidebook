@@ -16,6 +16,7 @@ import Accommodation from "./components/Accommodation";
 import Cities from "./components/Cities";
 
 import { DarkModeContext } from "./javascriptDocs/context";
+import CityPage from "./components/CityPage";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -39,6 +40,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path={`/${CITIES}`} element={<Cities />} />
+          <Route path="/cities/:cityName" element={<CityPage />} />
           <Route path={`/${ATTRACTIONS}`} element={<Attractions />} />
           <Route path={`/${TRANSPORTATION}`} element={<Transportation />} />
           <Route path={`/${ACCOMMODATION}`} element={<Accommodation />} />
