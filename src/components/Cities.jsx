@@ -1,15 +1,31 @@
 import { Grid } from "@mui/material";
 import ActionAreaCard from "./ActionAreaCard";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firestore";
 
 export default function Cities() {
-  const obj = {
-    cityName: "TOKYO",
-    mainImageUrl:
-      "https://res.cloudinary.com/dvufmt40x/image/upload/v1742565472/tokyo-main_kl5wre.jpg",
-  };
+  const [cities, setCities] = useState([]);
 
-  const arr = new Array(20).fill(obj);
+  useEffect(() => {
+    async function fetchCities() {
+      try {
+        const querySnapshot = await getDocs(collection(db, "cities"));
+        const citiesData = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setCities(citiesData);
+      } catch (error) {
+        console.error("Error fetching cities:", error);
+      }
+    }
+
+    fetchCities();
+  }, []);
+
+  console.log(cities)
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
@@ -18,17 +34,19 @@ export default function Cities() {
       y: 0,
       transition: {
         duration: 0.6,
-        delay: i * 0.6 /*1*/ ,
+        delay: i * 0.6,
       },
     }),
   };
 
+  console.log(cities)
+
   return (
     <Grid container spacing={0} justifyContent="center">
-      {arr.map((city, index) => (
+      {cities.map((city, index) => (
         <Grid
           item
-          key={index}
+          key={city.id}
           sx={{
             flexBasis: "20%",
             maxWidth: "20%",

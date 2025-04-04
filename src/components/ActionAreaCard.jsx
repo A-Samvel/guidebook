@@ -12,8 +12,10 @@ import { useNavigate } from "react-router-dom";
 
 export default function ActionAreaCard({ city }) {
   const { color1, color2, border, textColor } = useContext(DarkModeContext);
-  const { cityName, mainImageUrl } = city;
+  const { cityName, photos } = city;
   const navigate = useNavigate();
+
+  const mainImageUrl = photos[0]
 
   const handleClick = () => {
     navigate(`/cities/${cityName.toLowerCase()}`);
@@ -35,7 +37,6 @@ export default function ActionAreaCard({ city }) {
       <CardActionArea onClick={handleClick}>
         <CardMedia
           component="div"
-          image={mainImageUrl}
           sx={{
             height: 260,
             backgroundImage: `url(${mainImageUrl})`,
@@ -57,7 +58,7 @@ export default function ActionAreaCard({ city }) {
           }}
         >
           <Typography variant="h5" component="div" fontFamily="Roboto Mono">
-            {cityName}
+            {cityName.toUpperCase()}
           </Typography>
         </CardContent>
       </CardActionArea>
