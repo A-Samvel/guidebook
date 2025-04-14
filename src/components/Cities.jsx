@@ -25,7 +25,6 @@ export default function Cities() {
     fetchCities();
   }, []);
 
-  console.log(cities)
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
@@ -39,7 +38,6 @@ export default function Cities() {
     }),
   };
 
-  console.log(cities)
 
   return (
     <Grid container spacing={0} justifyContent="center">

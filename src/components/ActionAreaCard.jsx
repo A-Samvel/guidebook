@@ -15,7 +15,7 @@ export default function ActionAreaCard({ city }) {
   const { cityName, photos } = city;
   const navigate = useNavigate();
 
-  const mainImageUrl = photos[0]
+  const mainImageUrl = photos[0];
 
   const handleClick = () => {
     navigate(`/cities/${cityName.toLowerCase()}`);
@@ -42,11 +42,11 @@ export default function ActionAreaCard({ city }) {
             backgroundImage: `url(${mainImageUrl})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            borderRadius: "130px",
+
             boxShadow:
               "0px 4px 8px rgba(0, 0, 0, 0.3), 0px 2px 5px rgba(0, 0, 0, 0.2)",
-            mt: 1,
-            mb: 3,
+
+            mt: 2,
           }}
         />
         <CardContent
@@ -55,6 +55,7 @@ export default function ActionAreaCard({ city }) {
             color: textColor,
             display: "flex",
             justifyContent: "center",
+            mt:1
           }}
         >
           <Typography variant="h5" component="div" fontFamily="Roboto Mono">
